@@ -52,13 +52,22 @@ let completeNavText = "";
 let counter = 0;
 
 for (let i = 0; i < navItems.length; i++) {  
-  counter++;
-  completeNavText = navText + counter;
-  navItems[i].textContent = navContent[completeNavText];
+    counter++;
+    completeNavText = navText + counter;
+    navItems[i].textContent = navContent[completeNavText];
 }
 
 
 //---cta---
+let ctaValues = Object.values(siteContent.cta); //fill with all values of objects in cta
+let ctaText = document.querySelectorAll(".cta-text *"); //fill with both elements within this class
+
+ctaText.forEach ((currentValue, i) => {
+    currentValue.textContent = ctaValues[i];
+});
+
+//cta image
+document.querySelector("#cta-img").src = siteContent["cta"]["img-src"];
 
 //------main content------
 let mainContentValues = Object.values(siteContent["main-content"]);  //all main content values from json
@@ -68,12 +77,12 @@ let mainContentText = document.querySelectorAll(".text-content *"); //all text e
 
 //for loop for "top-content" text
 for (let i = 0; i < 4; i++) { 
-  mainContentText[i].textContent = mainContentValues[i];
+    mainContentText[i].textContent = mainContentValues[i];
 }
 
 //for loop for "bottom-content" text
 for (let i = 4; i < 10; i++) {
-  mainContentText[i].textContent = mainContentValues[i];
+    mainContentText[i].textContent = mainContentValues[i];
 }
 
 //middle image in main content
@@ -85,7 +94,7 @@ let contact = document.querySelectorAll(".contact *");
 let contactValues = Object.values(siteContent.contact);
 
 contact.forEach ( (currentValue, i) => {
-  currentValue.textContent = contactValues[i];
+    currentValue.textContent = contactValues[i];
 });
 
 //------footer------
