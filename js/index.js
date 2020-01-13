@@ -41,7 +41,9 @@ const siteContent = {
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
-//nav bar
+//---nav bar---
+//note - didn't have to create navText, etc. could have simply went the method 
+//used in later sections of page (ex- contact section)
 let navContent = siteContent["nav"];
 let navItems = document.querySelectorAll("nav a");
 
@@ -55,19 +57,36 @@ for (let i = 0; i < navItems.length; i++) {
   navItems[i].textContent = navContent[completeNavText];
 }
 
-//navItems[1].textContent = "test";
+
+//---cta---
+
+//------main content------
+let mainContentValues = Object.values(siteContent["main-content"]);  //all main content values from json
+mainContentValues.splice(4, 1); //remove element at index 4, which is the middle image. 
+                                //now, mainContentValues only contains the text items.
+let mainContentText = document.querySelectorAll(".text-content *"); //all text elements in main content containers
+
+//for loop for "top-content" text
+for (let i = 0; i < 4; i++) { 
+  mainContentText[i].textContent = mainContentValues[i];
+}
+
+//for loop for "bottom-content" text
+for (let i = 4; i < 10; i++) {
+  mainContentText[i].textContent = mainContentValues[i];
+}
+
+//middle image in main content
+document.querySelector("#middle-img").src = siteContent["main-content"]["middle-img-src"];
 
 
+//------contact------
+let contact = document.querySelectorAll(".contact *");
+let contactValues = Object.values(siteContent.contact);
 
-//console.log(navItems);
+contact.forEach ( (currentValue, i) => {
+  currentValue.textContent = contactValues[i];
+});
 
-
-
-//cta
-
-//main content
-
-//contact
-
-//footer
+//------footer------
 document.querySelector('footer p').textContent = siteContent["footer"]["copyright"];
