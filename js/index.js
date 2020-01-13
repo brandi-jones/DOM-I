@@ -58,6 +58,28 @@ for (let i = 0; i < navItems.length; i++) {
 }
 
 
+//change color of nav text to be green
+navItems.forEach (currentValue => {
+  currentValue.style.color = "green";
+  currentValue.style.fontWeight = "bold";
+});
+
+//create new content for nav bar
+let newContent1 = document.createElement("a");
+let newContent2 = document.createElement("a");
+
+newContent1.textContent = "Team";
+newContent1.style.color = "green";
+newContent1.style.fontWeight = "bold";
+
+newContent2.textContent = "Shop"
+newContent2.style.color = "green";
+newContent2.style.fontWeight = "bold";
+
+document.querySelector("nav").appendChild(newContent1);
+document.querySelector("nav").prepend(newContent2);
+
+
 //---cta---
 let ctaValues = Object.values(siteContent.cta); //fill with all values of objects in cta
 let ctaText = document.querySelectorAll(".cta-text *"); //fill with both elements within this class
