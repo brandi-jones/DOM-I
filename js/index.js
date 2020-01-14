@@ -40,3 +40,84 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+//---nav bar---
+//note - didn't have to create navText, etc. could have simply went the method 
+//used in later sections of page (ex- contact section)
+let navContent = siteContent["nav"];
+let navItems = document.querySelectorAll("nav a");
+
+let navText = "nav-item-";
+let completeNavText = "";
+let counter = 0;
+
+for (let i = 0; i < navItems.length; i++) {  
+    counter++;
+    completeNavText = navText + counter;
+    navItems[i].textContent = navContent[completeNavText];
+}
+
+
+//change color of nav text to be green
+navItems.forEach (currentValue => {
+  currentValue.style.color = "green";
+  currentValue.style.fontWeight = "bold";
+});
+
+//create new content for nav bar
+let newContent1 = document.createElement("a");
+let newContent2 = document.createElement("a");
+
+newContent1.textContent = "Team";
+newContent1.style.color = "green";
+newContent1.style.fontWeight = "bold";
+
+newContent2.textContent = "Shop"
+newContent2.style.color = "green";
+newContent2.style.fontWeight = "bold";
+
+document.querySelector("nav").appendChild(newContent1);
+document.querySelector("nav").prepend(newContent2);
+
+
+//---cta---
+let ctaValues = Object.values(siteContent.cta); //fill with all values of objects in cta
+let ctaText = document.querySelectorAll(".cta-text *"); //fill with both elements within this class
+
+ctaText.forEach ((currentValue, i) => {
+    currentValue.textContent = ctaValues[i];
+});
+
+//cta image
+document.querySelector("#cta-img").src = siteContent["cta"]["img-src"];
+
+//------main content------
+let mainContentValues = Object.values(siteContent["main-content"]);  //all main content values from json
+mainContentValues.splice(4, 1); //remove element at index 4, which is the middle image. 
+                                //now, mainContentValues only contains the text items.
+let mainContentText = document.querySelectorAll(".text-content *"); //all text elements in main content containers
+
+//for loop for "top-content" text
+for (let i = 0; i < 4; i++) { 
+    mainContentText[i].textContent = mainContentValues[i];
+}
+
+//for loop for "bottom-content" text
+for (let i = 4; i < 10; i++) {
+    mainContentText[i].textContent = mainContentValues[i];
+}
+
+//middle image in main content
+document.querySelector("#middle-img").src = siteContent["main-content"]["middle-img-src"];
+
+
+//------contact------
+let contact = document.querySelectorAll(".contact *");
+let contactValues = Object.values(siteContent.contact);
+
+contact.forEach ( (currentValue, i) => {
+    currentValue.textContent = contactValues[i];
+});
+
+//------footer------
+document.querySelector('footer p').textContent = siteContent["footer"]["copyright"];
